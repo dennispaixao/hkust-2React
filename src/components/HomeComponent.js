@@ -5,16 +5,16 @@ import {Loading} from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
 
 function RenderCard({item, isLoading, errMess}) {
-    if (isLoading || !item){
-        return(
-            <Loading />
-        )
-    }else if (errMess){
+    if (errMess){
         return (
             <h4>{errMess}</h4>
         );
-    }else
-
+    }
+     else if (isLoading){
+        return(
+            <Loading />
+        );
+    }else 
         return(
             <Card>
                 <CardImg src={baseUrl + item.image} alt={item.name} />
@@ -35,7 +35,7 @@ function Home(props) {
             <div className="row align-items-start">
                 <div className="col-12 col-md m-1">
                     <RenderCard item={props.dish} isLoading={props.dishesLoading} 
-                    errMessage={props.dishesErrMess}
+                    errMess={props.dishErrMess}
                     />
                 </div>
                 <div className="col-12 col-md m-1">
